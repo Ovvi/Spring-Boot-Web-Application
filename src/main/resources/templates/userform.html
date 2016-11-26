@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+
+    <title>Spring Web App</title>
+
+    <!--/*/ <th:block th:include="fragments/headerinfo :: head"></th:block> /*/-->
+</head>
+<body>
+<div class="container">
+    <!--/*/ <th:block th:include="fragments/header :: header"></th:block> /*/-->
+
+    <h2 style="text-align: center;">Save / Edit User</h2>
+    <div>
+        <form class="form-horizontal" th:object="${user}" th:action="@{/user}" method="post">
+            <input type="hidden" th:field="*{id}"/>
+            <input type="hidden" th:field="*{version}"/>
+            <div class="form-group">
+            <div class="col-sm-8 col-sm-offset-2">
+                <div class="input-group">
+                    <span class="input-group-addon" id="sizing-addon1">@</span>
+                    <input type="text" class="form-control" th:field="*{firstName}" placeholder="First Name"
+                           aria-describedby="sizing-addon1"/>
+                    <td th:if="${#fields.hasErrors('lastName')}" th:errors="*{firstName}">FirstName Error</td>
+                </div>
+            </div>
+            </div>
+
+            <div class="form-group">
+            <div class="col-sm-8 col-sm-offset-2">
+                <div class="input-group">
+                    <span class="input-group-addon" id="sizing-addon2">@</span>
+                    <input type="text" class="form-control" th:field="*{lastName}" placeholder="Last Name"
+                           aria-describedby="sizing-addon2"/>
+                    <td th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}">LastName Error</td>
+                </div>
+            </div>
+            </div>
+            <div class="form-group">
+            <div class="col-sm-8 col-sm-offset-2">
+                <div class="input-group">
+                    <span class="input-group-addon" id="sizing-addon3">@</span>
+                    <input type="text" class="form-control" th:field="*{hobby}" placeholder="Hobby"
+                           aria-describedby="sizing-addon3"/>
+                    <td th:if="${#fields.hasErrors('hobby')}" th:errors="*{hobby}">Hobby Error</td>
+                </div>
+            </div>
+            </div>
+            <div class="col-sm-8 col-sm-offset-2">
+                    <button type="submit" class="btn btn-primary center-block">Submit</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+</body>
+</html>
