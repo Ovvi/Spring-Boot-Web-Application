@@ -5,6 +5,8 @@ import com.OviWebApplication.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * Created by Ovi on 11/21/2016.
  */
@@ -38,5 +40,10 @@ public class UserServiceImp implements UserService{
     @Override
     public void deleteUser(Integer id) {
         userRepository.delete(id);
+    }
+
+    @Override
+    public List<User> searchByFirstName(String firstName) {
+        return userRepository.findAllByFirstName(firstName);
     }
 }

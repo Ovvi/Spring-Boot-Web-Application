@@ -19,7 +19,7 @@ public class User {
     @Version
     private Integer version;
 
-    @NotNull
+
     @Size(min=2, max=30, message = "Please insert a valid name")
     private String firstName;
     @NotNull

@@ -11,15 +11,29 @@
             <div class="container">
                 <div class="navbar-header">
                     <div class="btn-group" role="group">
-                            <a class="navbar-brand" href="#" th:href="@{/}"><span class="glyphicon glyphicon-home"></span> </a>
+                        <a class="navbar-brand" href="#" th:href="@{/}"><span class="glyphicon glyphicon-home"></span>
+                        </a>
                         <ul class="nav navbar-nav">
-                                <li><a href="#" th:href="@{/usersList}"><span class="glyphicon glyphicon-user"></span> </a>
-                                </li>
-                                <li><a href="#" th:href="@{/user/new}"><span class="glyphicon glyphicon-plus"></span>
-                                </a></li>
+                            <li><a href="#" th:href="@{/usersList}"><span class="glyphicon glyphicon-th-list"></span> </a>
+                            </li>
+                            <li><a href="#" th:href="@{/user/new}"><span class="glyphicon glyphicon-plus"></span>
+                            </a></li>
                         </ul>
                     </div>
                 </div>
+
+                <form class="navbar-form navbar-right" th:action="@{/byFirstName(userInput=${firstName})}" method="post">
+                    <div class="form-group">
+                        <input type="text" pattern="[a-zA-Z]+" title="Only enter letters" class="form-control" name="firstName" id="firstName" th:value="${firstName}" placeholder="Search by First Name"/>
+                        <button type="submit" name="submit" value="value" class="btn btn-primary"><span class="glyphicon glyphicon-search"></span></button>
+                    </div>
+                </form>
+                <form class="navbar-form navbar-right" th:action="@{/byId(userId=${userId})}" method="post">
+                    <div class="form-group">
+                        <input type="number" class="form-control" name="id" id="id" th:value="${userId}" placeholder="Search by Id"/>
+                        <button type="submit" name="submit" value="value" class="btn btn-primary"><span class="glyphicon glyphicon-search"></span></button>
+                    </div>
+                </form>
             </div>
         </nav>
 
