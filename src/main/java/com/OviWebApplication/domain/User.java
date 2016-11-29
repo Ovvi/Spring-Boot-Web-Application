@@ -6,7 +6,7 @@ import javax.validation.constraints.Size;
 
 
 /**
- * Created by Ovi on 11/20/2016.
+ * This class represent the domain/model of the object stored in the database and all the specifications.
  */
 
 @Entity
@@ -19,7 +19,7 @@ public class User {
     @Version
     private Integer version;
 
-
+    @NotNull
     @Size(min=2, max=30, message = "Please insert a valid name")
     private String firstName;
     @NotNull

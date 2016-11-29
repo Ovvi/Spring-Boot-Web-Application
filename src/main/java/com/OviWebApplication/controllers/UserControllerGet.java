@@ -15,10 +15,10 @@ import javax.validation.Valid;
 import java.util.List;
 
 /**
- * Created by Ovi on 11/21/2016.
+ * This class takes care of all the RequestMethods GET.
  */
 @Controller
-public class UserController {
+public class UserControllerGet {
 
     private UserService userService;
 
@@ -27,64 +27,66 @@ public class UserController {
         this.userService = userService;
     }
 
+    /**
+     * Responsible for get all the users and display them.
+     * @param model bind the users to the model.
+     * @return /users.html to view the users.
+     */
     @RequestMapping(value = "/usersList", method = RequestMethod.GET)
     public String list(Model model) {
         model.addAttribute("userslist", userService.listAllUsers());
-        return "users";
+        return "/users";
     }
 
+
+    /**
+     * This method get the id of the user selected and return the view.
+     * @param id Integer variable to store the user id selected.
+     * @param model bind the user selected to the model.
+     * @return /users.html to see the user selected.
+     */
     @RequestMapping("/user/{id}")
     public String showUser(@PathVariable Integer id, Model model) {
         model.addAttribute("user", userService.getUserById(id));
-        return "usershow";
+        return "/usershow";
     }
 
+
+    /**
+     * This method get the user selected , bind to the model and return the view for edit the user.
+     * @param id Integer variable to store the user id selected.
+     * @param model bind the user selected to the model.
+     * @return /userform.html for editing the user.
+     */
     @RequestMapping("/user/edit/{id}")
     public String edit(@PathVariable Integer id, Model model) {
         model.addAttribute("user", userService.getUserById(id));
-        return "userform";
+        return "/userform";
     }
 
+
+    /**
+     * Method responsible for deleting a selected user.
+     * @param id  Integer variable to store the user id selected.
+     * @return redirect to /usersList to update the users.
+     */
     @RequestMapping("/user/delete/{id}")
     public String deleteUser(@PathVariable Integer id) {
         userService.deleteUser(id);
         return "redirect:/usersList";
     }
 
+
+    /**
+     * This method help to get a new instance of a user to be able to insert a new User to the database.
+     * @param model bind the new User to the model.
+     * @return /userform.html to be able to insert all the information about the user.
+     */
     @RequestMapping("/user/new")
     public String newUser(Model model) {
         model.addAttribute("user", new User());
         return "/userform";
     }
-
-    @RequestMapping(value = "user", method = RequestMethod.POST)
-    public String saveUser(@Valid User user, BindingResult result) {
-        if (result.hasErrors()) {
-            return "/userform";
-        }
-        userService.saveUser(user);
-        return "redirect:/user/" + user.getId();
-    }
-
-    @RequestMapping(value = "/byFirstName", method = RequestMethod.POST)
-    public String byFirstName(@RequestParam("firstName") String firstName, Model model ) {
-        if (userService.searchByFirstName(firstName).isEmpty()){
-            return "/usernotfound";
-        }
-        model.addAttribute("userslist", userService.searchByFirstName(firstName));
-        return "/users";
-    }
-
-    @RequestMapping(value = "/byId", method = RequestMethod.POST)
-    public String byFirstName(Model model, @RequestParam("id") Integer id) {
-        if (userService.getUserById(id) == null){
-            return "/usernotfound";
-        }
-        model.addAttribute("user", userService.getUserById(id));
-        return "/usershow";
-    }
-
-
 
 
 }

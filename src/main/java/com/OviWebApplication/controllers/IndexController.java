@@ -4,7 +4,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
- * Created by Ovi on 11/20/2016.
+ * This class its used to set the index Controller.
  */
 
 @Controller

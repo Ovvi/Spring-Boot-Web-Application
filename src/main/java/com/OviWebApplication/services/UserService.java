@@ -5,7 +5,7 @@ import com.OviWebApplication.domain.User;
 import java.util.List;
 
 /**
- * Created by Ovi on 11/21/2016.
+ * In this interface i set all the methods that UserServiceImpl needs to CRUD the repository.
  */
 public interface UserService {
 
